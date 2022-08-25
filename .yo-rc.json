@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.memoire.kital.raph"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "microservice",
+    "baseName": "immoblier",
+    "packageName": "com.memoire.kital.raph",
+    "packageFolder": "com/memoire/kital/raph",
+    "serverPort": "8089",
+    "authenticationType": "oauth2",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NTUzMWZiOWIxYzZhYjIyMTk0NGI0NTgzM2I5ZTdjZmQ2OWJmOTFmNjA0NmE0MWViYTQ3OGRlYWYzOGM2OWI1NTQwMjU2NGNmOWIyNWE2NGYwYTVkMGY0ZmUzZTI0MDlmMmUwOWVlZWFkYzE1YmY4ZTFiZDQ3MTlkNGVlYjg4MDc=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1661452774186,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
