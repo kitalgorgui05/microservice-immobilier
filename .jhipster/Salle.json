@@ -1,0 +1,36 @@
+{
+  "name": "Salle",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "batiment",
+      "otherEntityRelationshipName": "salle",
+      "relationshipName": "batiment",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20220827230227",
+  "entityTableName": "salles",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "immoblier",
+  "applications": "*",
+  "microserviceName": "immoblier"
+}
