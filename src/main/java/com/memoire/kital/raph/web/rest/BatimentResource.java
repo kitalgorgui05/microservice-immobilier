@@ -1,5 +1,6 @@
 package com.memoire.kital.raph.web.rest;
 
+import com.memoire.kital.raph.security.AuthoritiesConstants;
 import com.memoire.kital.raph.service.BatimentService;
 import com.memoire.kital.raph.web.rest.errors.BadRequestAlertException;
 import com.memoire.kital.raph.service.dto.BatimentDTO;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class BatimentResource {
 
     private final Logger log = LoggerFactory.getLogger(BatimentResource.class);
@@ -56,6 +59,10 @@ public class BatimentResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new batimentDTO, or with status {@code 400 (Bad Request)} if the batiment has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @Secured(
+        {AuthoritiesConstants.ADMIN
+        }
+    )
     @PostMapping("/batiments")
     public ResponseEntity<BatimentDTO> createBatiment(@Valid @RequestBody BatimentDTO batimentDTO) throws URISyntaxException {
         log.debug("REST request to save Batiment : {}", batimentDTO);
@@ -77,6 +84,11 @@ public class BatimentResource {
      * or with status {@code 500 (Internal Server Error)} if the batimentDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @Secured(
+        {
+            AuthoritiesConstants.ADMIN
+        }
+    )
     @PutMapping("/batiments")
     public ResponseEntity<BatimentDTO> updateBatiment(@Valid @RequestBody BatimentDTO batimentDTO) throws URISyntaxException {
         log.debug("REST request to update Batiment : {}", batimentDTO);
@@ -110,6 +122,8 @@ public class BatimentResource {
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
      */
+
+    // pour compter nombre de Batiments
     @GetMapping("/batiments/count")
     public ResponseEntity<Long> countBatiments(BatimentCriteria criteria) {
         log.debug("REST request to count Batiments by criteria: {}", criteria);
@@ -123,7 +137,7 @@ public class BatimentResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the batimentDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/batiments/{id}")
-    public ResponseEntity<BatimentDTO> getBatiment(@PathVariable Long id) {
+    public ResponseEntity<BatimentDTO> getBatiment(@PathVariable String id) {
         log.debug("REST request to get Batiment : {}", id);
         Optional<BatimentDTO> batimentDTO = batimentService.findOne(id);
         return ResponseUtil.wrapOrNotFound(batimentDTO);
@@ -135,8 +149,13 @@ public class BatimentResource {
      * @param id the id of the batimentDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
+    @Secured(
+        {
+            AuthoritiesConstants.ADMIN
+        }
+    )
     @DeleteMapping("/batiments/{id}")
-    public ResponseEntity<Void> deleteBatiment(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBatiment(@PathVariable String id) {
         log.debug("REST request to delete Batiment : {}", id);
         batimentService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();

@@ -89,7 +89,7 @@ public class BatimentQueryService extends QueryService<Batiment> {
         Specification<Batiment> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getId(), Batiment_.id));
+                specification = specification.and(buildStringSpecification(criteria.getId(), Batiment_.id));
             }
             if (criteria.getNom() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getNom(), Batiment_.nom));

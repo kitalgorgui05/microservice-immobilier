@@ -37,7 +37,7 @@ public class SalleServiceImpl implements SalleService {
     public SalleDTO save(SalleDTO salleDTO) {
         log.debug("Request to save Salle : {}", salleDTO);
         Salle salle = salleMapper.toEntity(salleDTO);
-        salle = salleRepository.save(salle);
+        salle = salleRepository.saveAndFlush(salle);
         return salleMapper.toDto(salle);
     }
 
@@ -49,17 +49,16 @@ public class SalleServiceImpl implements SalleService {
             .map(salleMapper::toDto);
     }
 
-
     @Override
     @Transactional(readOnly = true)
-    public Optional<SalleDTO> findOne(Long id) {
+    public Optional<SalleDTO> findOne(String id) {
         log.debug("Request to get Salle : {}", id);
         return salleRepository.findById(id)
             .map(salleMapper::toDto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete Salle : {}", id);
         salleRepository.deleteById(id);
     }

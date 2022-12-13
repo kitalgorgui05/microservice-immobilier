@@ -22,15 +22,13 @@ import io.github.jhipster.service.filter.StringFilter;
  */
 public class SalleCriteria implements Serializable, Criteria {
 
-    private static final long serialVersionUID = 1L;
-
-    private LongFilter id;
+    private StringFilter id;
 
     private StringFilter nom;
 
     private IntegerFilter nombre;
 
-    private LongFilter batimentId;
+    private StringFilter batimentId;
 
     public SalleCriteria() {
     }
@@ -47,11 +45,11 @@ public class SalleCriteria implements Serializable, Criteria {
         return new SalleCriteria(this);
     }
 
-    public LongFilter getId() {
+    public StringFilter getId() {
         return id;
     }
 
-    public void setId(LongFilter id) {
+    public void setId(StringFilter id) {
         this.id = id;
     }
 
@@ -71,11 +69,11 @@ public class SalleCriteria implements Serializable, Criteria {
         this.nombre = nombre;
     }
 
-    public LongFilter getBatimentId() {
+    public StringFilter getBatimentId() {
         return batimentId;
     }
 
-    public void setBatimentId(LongFilter batimentId) {
+    public void setBatimentId(StringFilter batimentId) {
         this.batimentId = batimentId;
     }
 

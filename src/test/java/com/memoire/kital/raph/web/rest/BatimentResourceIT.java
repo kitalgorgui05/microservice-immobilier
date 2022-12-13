@@ -118,7 +118,7 @@ public class BatimentResourceIT {
         int databaseSizeBeforeCreate = batimentRepository.findAll().size();
 
         // Create the Batiment with an existing ID
-        batiment.setId(1L);
+        batiment.setId(null);
         BatimentDTO batimentDTO = batimentMapper.toDto(batiment);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -183,11 +183,11 @@ public class BatimentResourceIT {
         restBatimentMockMvc.perform(get("/api/batiments?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(batiment.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(batiment.getId())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].nombreSalle").value(hasItem(DEFAULT_NOMBRE_SALLE)));
     }
-    
+
     @Test
     @Transactional
     public void getBatiment() throws Exception {
@@ -198,7 +198,7 @@ public class BatimentResourceIT {
         restBatimentMockMvc.perform(get("/api/batiments/{id}", batiment.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(batiment.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(batiment.getId()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.nombreSalle").value(DEFAULT_NOMBRE_SALLE));
     }
@@ -210,7 +210,7 @@ public class BatimentResourceIT {
         // Initialize the database
         batimentRepository.saveAndFlush(batiment);
 
-        Long id = batiment.getId();
+        String id = batiment.getId();
 
         defaultBatimentShouldBeFound("id.equals=" + id);
         defaultBatimentShouldNotBeFound("id.notEquals=" + id);
@@ -412,7 +412,7 @@ public class BatimentResourceIT {
         restBatimentMockMvc.perform(get("/api/batiments?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(batiment.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(batiment.getId())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].nombreSalle").value(hasItem(DEFAULT_NOMBRE_SALLE)));
 

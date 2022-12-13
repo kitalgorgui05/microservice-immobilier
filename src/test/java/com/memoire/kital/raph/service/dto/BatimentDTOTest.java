@@ -10,12 +10,12 @@ public class BatimentDTOTest {
     public void dtoEqualsVerifier() throws Exception {
         TestUtil.equalsVerifier(BatimentDTO.class);
         BatimentDTO batimentDTO1 = new BatimentDTO();
-        batimentDTO1.setId(1L);
+        batimentDTO1.setId(null);
         BatimentDTO batimentDTO2 = new BatimentDTO();
         assertThat(batimentDTO1).isNotEqualTo(batimentDTO2);
         batimentDTO2.setId(batimentDTO1.getId());
         assertThat(batimentDTO1).isEqualTo(batimentDTO2);
-        batimentDTO2.setId(2L);
+        batimentDTO2.setId(null);
         assertThat(batimentDTO1).isNotEqualTo(batimentDTO2);
         batimentDTO1.setId(null);
         assertThat(batimentDTO1).isNotEqualTo(batimentDTO2);

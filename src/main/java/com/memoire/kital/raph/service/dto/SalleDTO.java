@@ -7,23 +7,23 @@ import java.io.Serializable;
  * A DTO for the {@link com.memoire.kital.raph.domain.Salle} entity.
  */
 public class SalleDTO implements Serializable {
-    
-    private Long id;
+
+    private String id;
 
     @NotNull
     private String nom;
 
     @NotNull
     private Integer nombre;
+    //private String batimentId;
 
+    private BatimentDTO batiment;
 
-    private Long batimentId;
-    
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,12 +43,12 @@ public class SalleDTO implements Serializable {
         this.nombre = nombre;
     }
 
-    public Long getBatimentId() {
-        return batimentId;
+    public BatimentDTO getBatiment() {
+        return batiment;
     }
 
-    public void setBatimentId(Long batimentId) {
-        this.batimentId = batimentId;
+    public void setBatiment(BatimentDTO batiment) {
+        this.batiment = batiment;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class SalleDTO implements Serializable {
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
             ", nombre=" + getNombre() +
-            ", batimentId=" + getBatimentId() +
+            ", batimentId=" + getBatiment()+
             "}";
     }
 }

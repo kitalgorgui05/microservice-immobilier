@@ -89,7 +89,7 @@ public class SalleQueryService extends QueryService<Salle> {
         Specification<Salle> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getId(), Salle_.id));
+                specification = specification.and(buildStringSpecification(criteria.getId(), Salle_.id));
             }
             if (criteria.getNom() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getNom(), Salle_.nom));

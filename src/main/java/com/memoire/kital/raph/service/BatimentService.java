@@ -28,19 +28,18 @@ public interface BatimentService {
      */
     Page<BatimentDTO> findAll(Pageable pageable);
 
-
     /**
      * Get the "id" batiment.
      *
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<BatimentDTO> findOne(Long id);
+    Optional<BatimentDTO> findOne(String id);
 
     /**
      * Delete the "id" batiment.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

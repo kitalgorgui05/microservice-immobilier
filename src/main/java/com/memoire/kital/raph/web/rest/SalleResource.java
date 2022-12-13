@@ -31,6 +31,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class SalleResource {
 
     private final Logger log = LoggerFactory.getLogger(SalleResource.class);
@@ -123,7 +124,7 @@ public class SalleResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the salleDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/salles/{id}")
-    public ResponseEntity<SalleDTO> getSalle(@PathVariable Long id) {
+    public ResponseEntity<SalleDTO> getSalle(@PathVariable String id) {
         log.debug("REST request to get Salle : {}", id);
         Optional<SalleDTO> salleDTO = salleService.findOne(id);
         return ResponseUtil.wrapOrNotFound(salleDTO);
@@ -136,7 +137,7 @@ public class SalleResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/salles/{id}")
-    public ResponseEntity<Void> deleteSalle(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteSalle(@PathVariable String id) {
         log.debug("REST request to delete Salle : {}", id);
         salleService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();

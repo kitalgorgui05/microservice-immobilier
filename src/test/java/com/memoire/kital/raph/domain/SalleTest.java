@@ -10,11 +10,11 @@ public class SalleTest {
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Salle.class);
         Salle salle1 = new Salle();
-        salle1.setId(1L);
+        salle1.setId(null);
         Salle salle2 = new Salle();
         salle2.setId(salle1.getId());
         assertThat(salle1).isEqualTo(salle2);
-        salle2.setId(2L);
+        salle2.setId(null);
         assertThat(salle1).isNotEqualTo(salle2);
         salle1.setId(null);
         assertThat(salle1).isNotEqualTo(salle2);

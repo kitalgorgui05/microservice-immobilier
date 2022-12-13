@@ -15,7 +15,7 @@ public class SalleMapperTest {
 
     @Test
     public void testEntityFromId() {
-        Long id = 1L;
+        String id = null;
         assertThat(salleMapper.fromId(id).getId()).isEqualTo(id);
         assertThat(salleMapper.fromId(null)).isNull();
     }

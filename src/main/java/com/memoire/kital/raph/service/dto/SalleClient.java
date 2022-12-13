@@ -1,21 +1,14 @@
 package com.memoire.kital.raph.service.dto;
 
-import javax.validation.constraints.*;
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
-/**
- * A DTO for the {@link com.memoire.kital.raph.domain.Batiment} entity.
- */
-public class BatimentDTO implements Serializable {
+
+public class SalleClient {
 
     private String id;
 
     @NotNull
-    @Size(min = 3, max = 10)
     private String nom;
-
-    @NotNull
-    private Integer nombreSalle;
 
     public String getId() {
         return id;
@@ -33,24 +26,16 @@ public class BatimentDTO implements Serializable {
         this.nom = nom;
     }
 
-    public Integer getNombreSalle() {
-        return nombreSalle;
-    }
-
-    public void setNombreSalle(Integer nombreSalle) {
-        this.nombreSalle = nombreSalle;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof BatimentDTO)) {
+        if (!(o instanceof SalleDTO)) {
             return false;
         }
 
-        return id != null && id.equals(((BatimentDTO) o).id);
+        return id != null && id.equals(((SalleClient) o).id);
     }
 
     @Override
@@ -61,10 +46,9 @@ public class BatimentDTO implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "BatimentDTO{" +
+        return "SalleDTO{" +
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
-            ", nombreSalle=" + getNombreSalle() +
             "}";
     }
 }

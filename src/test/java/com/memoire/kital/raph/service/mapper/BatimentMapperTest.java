@@ -15,7 +15,7 @@ public class BatimentMapperTest {
 
     @Test
     public void testEntityFromId() {
-        Long id = 1L;
+       String id = null;
         assertThat(batimentMapper.fromId(id).getId()).isEqualTo(id);
         assertThat(batimentMapper.fromId(null)).isNull();
     }

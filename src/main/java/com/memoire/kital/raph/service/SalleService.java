@@ -35,12 +35,12 @@ public interface SalleService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<SalleDTO> findOne(Long id);
+    Optional<SalleDTO> findOne(String id);
 
     /**
      * Delete the "id" salle.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

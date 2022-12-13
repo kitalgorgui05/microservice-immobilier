@@ -14,7 +14,7 @@ public interface BatimentMapper extends EntityMapper<BatimentDTO, Batiment> {
 
 
 
-    default Batiment fromId(Long id) {
+    default Batiment fromId(String id) {
         if (id == null) {
             return null;
         }

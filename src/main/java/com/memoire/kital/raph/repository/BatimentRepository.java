@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface BatimentRepository extends JpaRepository<Batiment, Long>, JpaSpecificationExecutor<Batiment> {
+public interface BatimentRepository extends JpaRepository<Batiment, String>, JpaSpecificationExecutor<Batiment> {
 }

@@ -119,7 +119,7 @@ public class SalleResourceIT {
         int databaseSizeBeforeCreate = salleRepository.findAll().size();
 
         // Create the Salle with an existing ID
-        salle.setId(1L);
+        salle.setId(null);
         SalleDTO salleDTO = salleMapper.toDto(salle);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -184,11 +184,11 @@ public class SalleResourceIT {
         restSalleMockMvc.perform(get("/api/salles?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(salle.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(salle.getId())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE)));
     }
-    
+
     @Test
     @Transactional
     public void getSalle() throws Exception {
@@ -199,7 +199,7 @@ public class SalleResourceIT {
         restSalleMockMvc.perform(get("/api/salles/{id}", salle.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(salle.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(salle.getId()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE));
     }
@@ -211,7 +211,7 @@ public class SalleResourceIT {
         // Initialize the database
         salleRepository.saveAndFlush(salle);
 
-        Long id = salle.getId();
+        String id = salle.getId();
 
         defaultSalleShouldBeFound("id.equals=" + id);
         defaultSalleShouldNotBeFound("id.notEquals=" + id);
@@ -417,7 +417,7 @@ public class SalleResourceIT {
         em.flush();
         salle.setBatiment(batiment);
         salleRepository.saveAndFlush(salle);
-        Long batimentId = batiment.getId();
+        String batimentId = batiment.getId();
 
         // Get all the salleList where batiment equals to batimentId
         defaultSalleShouldBeFound("batimentId.equals=" + batimentId);
@@ -433,7 +433,7 @@ public class SalleResourceIT {
         restSalleMockMvc.perform(get("/api/salles?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(salle.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(salle.getId())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE)));
 

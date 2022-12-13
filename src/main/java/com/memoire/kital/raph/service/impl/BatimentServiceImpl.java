@@ -37,7 +37,7 @@ public class BatimentServiceImpl implements BatimentService {
     public BatimentDTO save(BatimentDTO batimentDTO) {
         log.debug("Request to save Batiment : {}", batimentDTO);
         Batiment batiment = batimentMapper.toEntity(batimentDTO);
-        batiment = batimentRepository.save(batiment);
+        batiment = batimentRepository.saveAndFlush(batiment);
         return batimentMapper.toDto(batiment);
     }
 
@@ -49,17 +49,16 @@ public class BatimentServiceImpl implements BatimentService {
             .map(batimentMapper::toDto);
     }
 
-
     @Override
     @Transactional(readOnly = true)
-    public Optional<BatimentDTO> findOne(Long id) {
+    public Optional<BatimentDTO> findOne(String id) {
         log.debug("Request to get Batiment : {}", id);
         return batimentRepository.findById(id)
             .map(batimentMapper::toDto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete Batiment : {}", id);
         batimentRepository.deleteById(id);
     }
