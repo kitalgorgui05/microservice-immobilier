@@ -426,9 +426,6 @@ public class SalleResourceIT {
         defaultSalleShouldNotBeFound("batimentId.equals=" + (batimentId + 1));
     }
 
-    /**
-     * Executes the search, and checks that the default entity is returned.
-     */
     private void defaultSalleShouldBeFound(String filter) throws Exception {
         restSalleMockMvc.perform(get("/api/salles?sort=id,desc&" + filter))
             .andExpect(status().isOk())

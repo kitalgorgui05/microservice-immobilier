@@ -14,25 +14,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-
-/**
- * Service Implementation for managing {@link Batiment}.
- */
 @Service
 @Transactional
 public class BatimentServiceImpl implements BatimentService {
-
     private final Logger log = LoggerFactory.getLogger(BatimentServiceImpl.class);
-
     private final BatimentRepository batimentRepository;
-
     private final BatimentMapper batimentMapper;
 
     public BatimentServiceImpl(BatimentRepository batimentRepository, BatimentMapper batimentMapper) {
         this.batimentRepository = batimentRepository;
         this.batimentMapper = batimentMapper;
     }
-
     @Override
     public BatimentDTO save(BatimentDTO batimentDTO) {
         log.debug("Request to save Batiment : {}", batimentDTO);
@@ -40,7 +32,6 @@ public class BatimentServiceImpl implements BatimentService {
         batiment = batimentRepository.saveAndFlush(batiment);
         return batimentMapper.toDto(batiment);
     }
-
     @Override
     @Transactional(readOnly = true)
     public Page<BatimentDTO> findAll(Pageable pageable) {
@@ -48,7 +39,6 @@ public class BatimentServiceImpl implements BatimentService {
         return batimentRepository.findAll(pageable)
             .map(batimentMapper::toDto);
     }
-
     @Override
     @Transactional(readOnly = true)
     public Optional<BatimentDTO> findOne(String id) {
@@ -56,7 +46,6 @@ public class BatimentServiceImpl implements BatimentService {
         return batimentRepository.findById(id)
             .map(batimentMapper::toDto);
     }
-
     @Override
     public void delete(String id) {
         log.debug("Request to delete Batiment : {}", id);

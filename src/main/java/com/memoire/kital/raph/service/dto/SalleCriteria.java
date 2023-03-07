@@ -11,15 +11,6 @@ import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
 
-/**
- * Criteria class for the {@link com.memoire.kital.raph.domain.Salle} entity. This class is used
- * in {@link com.memoire.kital.raph.web.rest.SalleResource} to receive all the possible filtering options from
- * the Http GET request parameters.
- * For example the following could be a valid request:
- * {@code /salles?id.greaterThan=5&attr1.contains=something&attr2.specified=false}
- * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
- * fix type specific filters.
- */
 public class SalleCriteria implements Serializable, Criteria {
 
     private StringFilter id;
@@ -28,7 +19,7 @@ public class SalleCriteria implements Serializable, Criteria {
 
     private IntegerFilter nombre;
 
-    private StringFilter batimentId;
+    private StringFilter batiment;
 
     public SalleCriteria() {
     }
@@ -37,7 +28,7 @@ public class SalleCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.nom = other.nom == null ? null : other.nom.copy();
         this.nombre = other.nombre == null ? null : other.nombre.copy();
-        this.batimentId = other.batimentId == null ? null : other.batimentId.copy();
+        this.batiment = other.batiment == null ? null : other.batiment.copy();
     }
 
     @Override
@@ -70,11 +61,11 @@ public class SalleCriteria implements Serializable, Criteria {
     }
 
     public StringFilter getBatimentId() {
-        return batimentId;
+        return batiment;
     }
 
     public void setBatimentId(StringFilter batimentId) {
-        this.batimentId = batimentId;
+        this.batiment = batiment;
     }
 
 
@@ -91,7 +82,7 @@ public class SalleCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(nom, that.nom) &&
             Objects.equals(nombre, that.nombre) &&
-            Objects.equals(batimentId, that.batimentId);
+            Objects.equals(batiment, that.batiment);
     }
 
     @Override
@@ -100,7 +91,7 @@ public class SalleCriteria implements Serializable, Criteria {
         id,
         nom,
         nombre,
-        batimentId
+        batiment
         );
     }
 
@@ -111,7 +102,7 @@ public class SalleCriteria implements Serializable, Criteria {
                 (id != null ? "id=" + id + ", " : "") +
                 (nom != null ? "nom=" + nom + ", " : "") +
                 (nombre != null ? "nombre=" + nombre + ", " : "") +
-                (batimentId != null ? "batimentId=" + batimentId + ", " : "") +
+                (batiment != null ? "batiment=" + batiment + ", " : "") +
             "}";
     }
 

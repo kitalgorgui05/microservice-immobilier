@@ -28,16 +28,11 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * REST controller for managing {@link com.memoire.kital.raph.domain.Batiment}.
- */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("*")
 public class BatimentResource {
-
     private final Logger log = LoggerFactory.getLogger(BatimentResource.class);
-
     private static final String ENTITY_NAME = "immoblierBatiment";
 
     @Value("${jhipster.clientApp.name}")
@@ -51,14 +46,6 @@ public class BatimentResource {
         this.batimentService = batimentService;
         this.batimentQueryService = batimentQueryService;
     }
-
-    /**
-     * {@code POST  /batiments} : Create a new batiment.
-     *
-     * @param batimentDTO the batimentDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new batimentDTO, or with status {@code 400 (Bad Request)} if the batiment has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @Secured(
         {AuthoritiesConstants.ADMIN
         }
@@ -74,16 +61,6 @@ public class BatimentResource {
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
-
-    /**
-     * {@code PUT  /batiments} : Updates an existing batiment.
-     *
-     * @param batimentDTO the batimentDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated batimentDTO,
-     * or with status {@code 400 (Bad Request)} if the batimentDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the batimentDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @Secured(
         {
             AuthoritiesConstants.ADMIN
@@ -101,13 +78,6 @@ public class BatimentResource {
             .body(result);
     }
 
-    /**
-     * {@code GET  /batiments} : get all the batiments.
-     *
-     * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of batiments in body.
-     */
     @GetMapping("/batiments")
     public ResponseEntity<List<BatimentDTO>> getAllBatiments(BatimentCriteria criteria, Pageable pageable) {
         log.debug("REST request to get Batiments by criteria: {}", criteria);
@@ -116,13 +86,6 @@ public class BatimentResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /batiments/count} : count all the batiments.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-
     // pour compter nombre de Batiments
     @GetMapping("/batiments/count")
     public ResponseEntity<Long> countBatiments(BatimentCriteria criteria) {
@@ -130,25 +93,12 @@ public class BatimentResource {
         return ResponseEntity.ok().body(batimentQueryService.countByCriteria(criteria));
     }
 
-    /**
-     * {@code GET  /batiments/:id} : get the "id" batiment.
-     *
-     * @param id the id of the batimentDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the batimentDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/batiments/{id}")
     public ResponseEntity<BatimentDTO> getBatiment(@PathVariable String id) {
         log.debug("REST request to get Batiment : {}", id);
         Optional<BatimentDTO> batimentDTO = batimentService.findOne(id);
         return ResponseUtil.wrapOrNotFound(batimentDTO);
     }
-
-    /**
-     * {@code DELETE  /batiments/:id} : delete the "id" batiment.
-     *
-     * @param id the id of the batimentDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @Secured(
         {
             AuthoritiesConstants.ADMIN

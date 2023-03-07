@@ -15,9 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-/**
- * Service Implementation for managing {@link Salle}.
- */
 @Service
 @Transactional
 public class SalleServiceImpl implements SalleService {

@@ -6,13 +6,8 @@ import com.memoire.kital.raph.service.dto.BatimentDTO;
 
 import org.mapstruct.*;
 
-/**
- * Mapper for the entity {@link Batiment} and its DTO {@link BatimentDTO}.
- */
 @Mapper(componentModel = "spring", uses = {})
 public interface BatimentMapper extends EntityMapper<BatimentDTO, Batiment> {
-
-
 
     default Batiment fromId(String id) {
         if (id == null) {
