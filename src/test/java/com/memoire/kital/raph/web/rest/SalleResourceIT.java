@@ -71,9 +71,9 @@ public class SalleResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Salle createEntity(EntityManager em) {
-        Salle salle = new Salle()
-            .nom(DEFAULT_NOM)
-            .nombre(DEFAULT_NOMBRE);
+        Salle salle = new Salle();
+        salle.setNom(DEFAULT_NOM);
+        salle.setNombre(DEFAULT_NOMBRE);
         return salle;
     }
     /**
@@ -83,9 +83,9 @@ public class SalleResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Salle createUpdatedEntity(EntityManager em) {
-        Salle salle = new Salle()
-            .nom(UPDATED_NOM)
-            .nombre(UPDATED_NOMBRE);
+        Salle salle = new Salle();
+        salle.setNom(UPDATED_NOM);
+        salle.setNombre(UPDATED_NOMBRE);
         return salle;
     }
 
@@ -478,9 +478,8 @@ public class SalleResourceIT {
         Salle updatedSalle = salleRepository.findById(salle.getId()).get();
         // Disconnect from session so that the updates on updatedSalle are not directly saved in db
         em.detach(updatedSalle);
-        updatedSalle
-            .nom(UPDATED_NOM)
-            .nombre(UPDATED_NOMBRE);
+        updatedSalle.setNom(UPDATED_NOM);
+        updatedSalle.setNombre(UPDATED_NOMBRE);
         SalleDTO salleDTO = salleMapper.toDto(updatedSalle);
 
         restSalleMockMvc.perform(put("/api/salles").with(csrf())
