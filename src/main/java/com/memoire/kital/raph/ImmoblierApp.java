@@ -1,7 +1,7 @@
 package com.memoire.kital.raph;
 
-import com.memoire.kital.raph.config.ApplicationProperties;
 
+import com.memoire.kital.raph.config.ApplicationProperties;
 import io.github.jhipster.config.DefaultProfileUtil;
 import io.github.jhipster.config.JHipsterConstants;
 

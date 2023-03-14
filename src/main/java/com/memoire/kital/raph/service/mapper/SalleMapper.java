@@ -7,6 +7,7 @@ import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", uses = {BatimentMapper.class})
 public interface SalleMapper extends EntityMapper<SalleDTO, Salle> {
+
     default Salle fromId(String id) {
         if (id == null) {
             return null;

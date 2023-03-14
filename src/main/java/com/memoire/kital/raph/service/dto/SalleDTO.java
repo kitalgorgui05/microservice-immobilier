@@ -4,16 +4,18 @@ import lombok.*;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
-@Data
+import java.util.Set;
+
+@Getter
+@Setter
+@Builder
+@ToString
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@EqualsAndHashCode
 public class SalleDTO implements Serializable {
     private String id;
     private String nom;
     private Integer nombre;
     private BatimentDTO batiment;
-
-    public SalleDTO(String id) {
-        this.id = id;
-    }
 }

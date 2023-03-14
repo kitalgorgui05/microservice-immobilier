@@ -4,13 +4,14 @@ import lombok.*;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.Set;
 
-@EqualsAndHashCode
 @Getter
 @Setter
+@Builder
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class BatimentDTO implements Serializable {
     private String id;
     private String nom;
@@ -18,5 +19,10 @@ public class BatimentDTO implements Serializable {
 
     public BatimentDTO(String id) {
         this.id = id;
+    }
+    public BatimentDTO(String id, String nom, Integer nombreSalle) {
+        this.id = id;
+        this.nom = nom;
+        this.nombreSalle = nombreSalle;
     }
 }

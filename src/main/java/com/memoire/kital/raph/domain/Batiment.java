@@ -1,5 +1,6 @@
 package com.memoire.kital.raph.domain;
 
+import com.memoire.kital.raph.utils.SizeMapper;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -27,8 +28,8 @@ public class Batiment implements Serializable {
     private String id;
 
     @NotNull
-    @Size(min = 3, max = 10)
-    @Column(name = "nom", length = 10, nullable = false, unique = true)
+    @Size(min = SizeMapper.SizeMapperBatiment.MIN, max = SizeMapper.SizeMapperBatiment.MAX)
+    @Column(name = "nom", length = SizeMapper.SizeMapperBatiment.MAX, nullable = false, unique = true)
     private String nom;
 
     @NotNull

@@ -70,9 +70,9 @@ public class BatimentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Batiment createEntity(EntityManager em) {
-        Batiment batiment = new Batiment()
-            .nom(DEFAULT_NOM)
-            .nombreSalle(DEFAULT_NOMBRE_SALLE);
+        Batiment batiment = new Batiment();
+        batiment.setNom(DEFAULT_NOM);
+        batiment.setNombreSalle(DEFAULT_NOMBRE_SALLE);
         return batiment;
     }
     /**
@@ -82,9 +82,9 @@ public class BatimentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Batiment createUpdatedEntity(EntityManager em) {
-        Batiment batiment = new Batiment()
-            .nom(UPDATED_NOM)
-            .nombreSalle(UPDATED_NOMBRE_SALLE);
+        Batiment batiment = new Batiment();
+        batiment.setNom(UPDATED_NOM);
+        batiment.setNombreSalle(UPDATED_NOMBRE_SALLE);
         return batiment;
     }
 
@@ -460,9 +460,8 @@ public class BatimentResourceIT {
         Batiment updatedBatiment = batimentRepository.findById(batiment.getId()).get();
         // Disconnect from session so that the updates on updatedBatiment are not directly saved in db
         em.detach(updatedBatiment);
-        updatedBatiment
-            .nom(UPDATED_NOM)
-            .nombreSalle(UPDATED_NOMBRE_SALLE);
+        updatedBatiment.setNom(UPDATED_NOM);
+        updatedBatiment.setNombreSalle(UPDATED_NOMBRE_SALLE);
         BatimentDTO batimentDTO = batimentMapper.toDto(updatedBatiment);
 
         restBatimentMockMvc.perform(put("/api/batiments").with(csrf())

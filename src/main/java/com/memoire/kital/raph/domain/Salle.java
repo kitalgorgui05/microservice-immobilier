@@ -36,5 +36,6 @@ public class Salle implements Serializable {
     private Integer nombre;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = "salles", allowSetters = true)
     private Batiment batiment;
 }

@@ -84,7 +84,7 @@ public class SalleResource {
         return salleDTO;
     }
 
-    @DeleteMapping("/salles/delete/{id}")
+    @DeleteMapping("/salles/{id}")
     public ResponseEntity<Void> deleteSalle(@PathVariable String id) {
         log.debug("REST request to delete Salle : {}", id);
         salleService.delete(id);
