@@ -47,7 +47,7 @@ public class SalleResource {
         }
         SalleDTO result = salleService.save(salleDTO);
         return ResponseEntity.created(new URI("/api/salles/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNom().toString()))
             .body(result);
     }
 
@@ -59,7 +59,7 @@ public class SalleResource {
         }
         SalleDTO result = salleService.save(salleDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, salleDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, salleDTO.getNom().toString()))
             .body(result);
     }
 
@@ -88,6 +88,6 @@ public class SalleResource {
     public ResponseEntity<Void> deleteSalle(@PathVariable String id) {
         log.debug("REST request to delete Salle : {}", id);
         salleService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

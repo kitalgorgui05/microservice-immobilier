@@ -46,6 +46,13 @@ public class BatimentServiceImpl implements BatimentService {
         return batimentRepository.findById(id)
             .map(batimentMapper::toDto);
     }
+
+    /*@Override
+    public Page<BatimentDTO> rechercheBatiment(String query, Pageable pageable) {
+        return batimentRepository.searchBatimentList(query, pageable)
+            .map(batimentMapper::toDto);
+    }*/
+
     @Override
     public void delete(String id) {
         log.debug("Request to delete Batiment : {}", id);

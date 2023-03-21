@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -58,7 +59,7 @@ public class BatimentResource {
         }
         BatimentDTO result = batimentService.save(batimentDTO);
         return ResponseEntity.created(new URI("/api/batiments/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNom().toString()))
             .body(result);
     }
     @Secured(
@@ -74,7 +75,7 @@ public class BatimentResource {
         }
         BatimentDTO result = batimentService.save(batimentDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, batimentDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, batimentDTO.getNom().toString()))
             .body(result);
     }
 
@@ -85,6 +86,14 @@ public class BatimentResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+    /*@GetMapping("/batiments/search")
+    public ResponseEntity<List<BatimentDTO>> getAllSearch(@Param("query") String query, Pageable pageable) {
+        log.debug("REST request to get Batiments by criteria: {}", query);
+        Page<BatimentDTO> page = batimentService.rechercheBatiment(query, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }*/
 
     // pour compter nombre de Batiments
     @GetMapping("/batiments/count")
@@ -108,6 +117,6 @@ public class BatimentResource {
     public ResponseEntity<Void> deleteBatiment(@PathVariable String id) {
         log.debug("REST request to delete Batiment : {}", id);
         batimentService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }
