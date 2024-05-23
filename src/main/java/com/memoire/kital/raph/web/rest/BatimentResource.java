@@ -48,7 +48,8 @@ public class BatimentResource {
         this.batimentQueryService = batimentQueryService;
     }
     @Secured(
-        {AuthoritiesConstants.ADMIN
+        {
+            AuthoritiesConstants.ADMIN
         }
     )
     @PostMapping("/batiments")
@@ -86,14 +87,6 @@ public class BatimentResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
-
-    /*@GetMapping("/batiments/search")
-    public ResponseEntity<List<BatimentDTO>> getAllSearch(@Param("query") String query, Pageable pageable) {
-        log.debug("REST request to get Batiments by criteria: {}", query);
-        Page<BatimentDTO> page = batimentService.rechercheBatiment(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }*/
 
     // pour compter nombre de Batiments
     @GetMapping("/batiments/count")

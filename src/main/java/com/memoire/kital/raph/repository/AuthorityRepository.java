@@ -1,7 +1,6 @@
 package com.memoire.kital.raph.repository;
 
 import com.memoire.kital.raph.domain.Authority;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
